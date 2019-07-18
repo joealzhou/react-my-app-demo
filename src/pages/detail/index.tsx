@@ -1,7 +1,18 @@
 import React, {Component} from 'react'
 import { history } from '../../App';
+import {connect} from 'react-redux'
 
-export default class DetailPage extends Component {
+interface Props {
+    num: number
+}
+
+const mapStateToProps = (state: any) => {
+    return {
+      num: state.calculate.num
+    };
+  };
+@(connect(mapStateToProps) as any)
+export default class DetailPage extends Component<Props> {
 
     state = {
         number: ''
@@ -18,7 +29,9 @@ export default class DetailPage extends Component {
     render() {
         
         return <div>
-            this is detailpage! {this.state.number}
+            <p>this is detailpage! {this.state.number}</p>
+            
+            <p>{this.props.num}</p>
         </div>
     }
 }
